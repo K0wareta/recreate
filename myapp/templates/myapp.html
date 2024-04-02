@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% for i in data %}
+    <h1>Место {{ forloop.counter }}</h1>
+
+     Название: {{ i.place_name }} <br>
+
+     {% if i.place_cost == 0 %}
+     Стоимость: бесплатно <br>
+     {% else %}
+     Стоимость: {{ i.place_cost }} <br>
+     {% endif %}
+
+     Виджет: {{i.place_link}} <br>
+
+     Адрес: {{i.place_address}} <br>
+
+     Фото: <br>
+     <img src="{% static i.place_image %}" width="100" height="100"> <br>
+
+     {%  if i.place_working_hours_start == i.place_working_hours_finish %}
+     Режим работы: круглосуточно <br>
+     {% else %}
+     Режим работы: {{i.place_working_hours_start}} - {{i.place_working_hours_finish}} <br>
+     {% endif %}
+
+     Для чего:
+        {% if i.place_goal1 != None %}
+        {{i.place_goal1}}
+        {% endif %}
+        {% if i.place_goal2 != None %}
+        {{i.place_goal2}}
+        {% endif %}
+        {% if i.place_goal3 != None %}
+        {{i.place_goal3}}
+        {% endif %}
+        <br>
+
+     Оценка: {{i.place_rating}} <br>
+
+     {% if i.place_date != None %}
+     Дата проведения: {{i.place_date}} <br>
+     {% endif %}
+
+    <br>
+    {% endfor %}
+</body>
+</html>
